@@ -1,0 +1,9 @@
+*.xcodeproj/
+.build/
+DerivedData/
+.swiftpm/
+xcuserdata/
+App/Info.plist
+Keyboard/Info.plist
+App/G2Mic.entitlements
+Keyboard/G2MicKeyboard.entitlements
