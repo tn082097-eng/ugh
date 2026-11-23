@@ -1,4 +1,5 @@
 import Foundation
+import G2Core
 
 /// The app and the keyboard extension are separate processes. They share state through an
 /// App Group `UserDefaults` suite and signal each other with Darwin notifications.
@@ -7,9 +8,12 @@ enum DictationState: String {
 }
 
 enum SharedDictation {
-    static var appGroup: String {
-        Bundle.main.object(forInfoDictionaryKey: "G2AppGroup") as? String ?? "group.com.example.g2mic"
-    }
+    /// The App Group actually granted to this build. Sideloading tools (used when installing
+    /// from Linux or Windows) often rename the group, e.g. by appending your Team ID, so prefer
+    /// the group listed in the embedded provisioning profile over the one in Info.plist.
+    static let appGroup: String = ProvisioningProfile.appGroup()
+        ?? Bundle.main.object(forInfoDictionaryKey: "G2AppGroup") as? String
+        ?? "group.com.example.g2mic"
 
     static var defaults: UserDefaults? { UserDefaults(suiteName: appGroup) }
 

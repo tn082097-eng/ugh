@@ -64,6 +64,8 @@ targets:
     sources:
       - Keyboard
       - Shared
+    dependencies:
+      - package: G2Core
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(BUNDLE_PREFIX).keyboard

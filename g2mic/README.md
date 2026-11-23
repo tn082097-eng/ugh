@@ -14,7 +14,26 @@ Everything is recognized on the iPhone itself, and the phone's microphone is nev
 
 iOS only lets the system use microphones that it recognizes as audio devices: the built-in mic, wired or USB mics, and Bluetooth *headsets* such as AirPods. The G2 connects over Bluetooth Low Energy as a *data* device, and iOS doesn't let any app add a new system microphone. So **phone calls, FaceTime, Siri, and voice recording inside other apps keep using the phone mic.** The only way around that is extra hardware that pretends to be a headset. See "Future" below.
 
-## Install it on your iPhone
+## Install it on your iPhone from Linux (or Windows)
+
+No Mac needed. GitHub's Mac servers build the app. A sideloading tool on your computer signs it with your Apple ID and installs it over USB.
+
+1. **Download the app file.** Open the repository's **Actions** tab, then the latest green **G2 Mic (iOS)** run. Under *Artifacts*, download **G2Mic-ipa** and unzip it to get `G2Mic.ipa`.
+2. **Install SideStore with [iloader](https://github.com/nab138/iloader).** iloader runs on Linux, and so does the rest of this route.
+   - Plug the iPhone in, open iloader, sign in with your Apple ID, and choose *Install SideStore*.
+   - A spare Apple ID is fine, and some people prefer one.
+3. On the iPhone:
+   - Turn on Settings › Privacy & Security › **Developer Mode**.
+   - Trust your Apple ID under Settings › General › VPN & Device Management.
+4. Open **SideStore**, go to *My Apps*, tap **+**, and pick `G2Mic.ipa`. To get the file onto the phone, you can AirDrop it, save it to Files, or email it to yourself.
+
+**Free Apple ID limits:**
+- Apps expire after 7 days. SideStore refreshes them on the phone, so you don't need the computer again.
+- At most 3 sideloaded apps at a time, and SideStore counts as one.
+
+**Other Linux tools:** [Impactor](https://github.com/khcrysalis/impactor) and [Sideloader](https://github.com/Dadoum/Sideloader) can also install the `.ipa` directly. If the keyboard can't reach the app after installing with one of them, use SideStore instead. The keyboard needs a shared "App Group", and SideStore handles that.
+
+## Install it on your iPhone from a Mac
 
 You need a Mac with Xcode 16 or newer and an Apple ID. A free account works, but the app stops opening after 7 days until you reinstall it. A paid developer account ($99 a year) lasts a year.
 

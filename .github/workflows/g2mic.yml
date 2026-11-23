@@ -37,10 +37,40 @@ jobs:
             CODE_SIGNING_ALLOWED=NO build 2>&1 | tee build.log | grep -E "error:|warning:|BUILD" || true
           grep -q "BUILD SUCCEEDED" build.log
 
-      - name: Build app + keyboard (iOS device, unsigned)
+      - name: Build app + keyboard (iOS device, Release, unsigned)
         working-directory: g2mic
         run: |
-          xcodebuild -project G2Mic.xcodeproj -scheme G2Mic \
-            -destination 'generic/platform=iOS' \
+          xcodebuild -project G2Mic.xcodeproj -scheme G2Mic -configuration Release \
+            -destination 'generic/platform=iOS' -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO build 2>&1 | tee build-device.log | grep -E "error:|BUILD" || true
           grep -q "BUILD SUCCEEDED" build-device.log
+
+      # An .ipa that a sideloading tool (e.g. on Linux/Windows) re-signs with your Apple ID.
+      # It is ad-hoc signed with the App Group entitlement so the re-signer knows the app and
+      # keyboard need a shared group.
+      - name: Package installable .ipa
+        working-directory: g2mic
+        run: |
+          app="build/Build/Products/Release-iphoneos/G2 Mic.app"
+          rm -rf Payload && mkdir Payload && cp -R "$app" Payload/
+          cat > ent.plist <<'PLIST'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+            <key>com.apple.security.application-groups</key>
+            <array><string>group.com.example.g2mic</string></array>
+          </dict></plist>
+          PLIST
+          codesign --force --sign - --entitlements ent.plist "Payload/G2 Mic.app/PlugIns/G2MicKeyboard.appex"
+          codesign --force --sign - --entitlements ent.plist "Payload/G2 Mic.app"
+          codesign -d --entitlements - "Payload/G2 Mic.app/PlugIns/G2MicKeyboard.appex" 2>&1 | grep -q "group.com.example.g2mic"
+          codesign -d --entitlements - "Payload/G2 Mic.app" 2>&1 | grep -q "group.com.example.g2mic"
+          ditto -c -k --sequesterRsrc --keepParent Payload G2Mic.ipa
+          ls -lh G2Mic.ipa
+
+      - name: Upload .ipa
+        uses: actions/upload-artifact@v4
+        with:
+          name: G2Mic-ipa
+          path: g2mic/G2Mic.ipa
+          if-no-files-found: error

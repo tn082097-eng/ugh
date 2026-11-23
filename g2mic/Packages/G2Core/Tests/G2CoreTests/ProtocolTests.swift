@@ -111,3 +111,27 @@ final class ProtocolTests: XCTestCase {
         XCTAssertEqual(t.utf8.count, 900)
     }
 }
+
+final class ProvisioningProfileTests: XCTestCase {
+    func testReadsAppGroupFromSignedProfileBlob() {
+        let plist = """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+        <plist version="1.0"><dict>
+          <key>Entitlements</key><dict>
+            <key>com.apple.security.application-groups</key>
+            <array><string>group.com.example.g2mic.ABCDE12345</string></array>
+          </dict>
+        </dict></plist>
+        """
+        // Real profiles wrap the plist in binary CMS data.
+        var blob = Data([0x30, 0x82, 0x1F, 0x00, 0xFF, 0x00])
+        blob.append(Data(plist.utf8))
+        blob.append(Data([0x00, 0xA0, 0x82, 0x0B]))
+        XCTAssertEqual(ProvisioningProfile.appGroup(fromProfileData: blob), "group.com.example.g2mic.ABCDE12345")
+    }
+
+    func testNoProfileMeansNil() {
+        XCTAssertNil(ProvisioningProfile.appGroup(fromProfileData: Data([1, 2, 3])))
+    }
+}
