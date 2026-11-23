@@ -1,0 +1,4 @@
+module CLC3 {
+    header "lc3.h"
+    export *
+}

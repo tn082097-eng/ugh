@@ -1,0 +1,46 @@
+name: G2 Mic (iOS)
+
+on:
+  push:
+    paths: ["g2mic/**", ".github/workflows/g2mic.yml"]
+  pull_request:
+    paths: ["g2mic/**", ".github/workflows/g2mic.yml"]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: macos-15
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Xcode version
+        run: xcodebuild -version
+
+      - name: Unit tests (protocol + LC3 audio)
+        working-directory: g2mic/Packages/G2Core
+        run: swift test
+
+      - name: Generate Xcode project
+        working-directory: g2mic
+        run: |
+          brew install xcodegen
+          xcodegen generate
+
+      - name: Build app + keyboard (iOS Simulator, unsigned)
+        working-directory: g2mic
+        run: |
+          xcodebuild -project G2Mic.xcodeproj -scheme G2Mic \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO build 2>&1 | tee build.log | grep -E "error:|warning:|BUILD" || true
+          grep -q "BUILD SUCCEEDED" build.log
+
+      - name: Build app + keyboard (iOS device, unsigned)
+        working-directory: g2mic
+        run: |
+          xcodebuild -project G2Mic.xcodeproj -scheme G2Mic \
+            -destination 'generic/platform=iOS' \
+            CODE_SIGNING_ALLOWED=NO build 2>&1 | tee build-device.log | grep -E "error:|BUILD" || true
+          grep -q "BUILD SUCCEEDED" build-device.log
