@@ -1,0 +1,103 @@
+{
+  "title": "Monsters in Crisis",
+  "format": { "width": 1920, "height": 1080, "fps": 24, "audio_rate": 48000 },
+  "style": "Photorealistic, shot on a broadcast cinema camera, 16:9. A real American daytime talk-show studio: warm key lighting, soft fill, glossy dark-blue set with a large backlit city-skyline panel, beige carpeted riser, studio audience in tiered seats in soft shadow. Natural film grain, shallow depth of field on close-ups, slow and steady camera moves only. Completely serious tone, as if this is a genuine televised family intervention. No comedy music, no laugh track, no cartoon effects, no exaggerated acting, no on-screen text.",
+  "characters": {
+    "HOST": "the host, a composed television psychologist in his sixties with short silver hair and a neatly trimmed grey beard, navy suit, open-collar white shirt, reading glasses folded in his hand; calm, direct, faintly disappointed",
+    "KAIJU": "a giant charcoal-grey reptilian kaiju with rough, pebbled scales, rows of jagged pale dorsal plates and a long tail curled beside the chair, scaled down just enough to sit in an oversized reinforced talk-show armchair; heavy, still, ashamed body language",
+    "APE": "an enormous silverback gorilla with dark brown fur greying across the shoulders, battle scars on the brow, sitting upright in a second oversized reinforced armchair with huge hands resting on his knees; proud, guarded, easily wounded"
+  },
+  "audio_bed": "Quiet studio room tone: faint air-conditioning hum, one distant cough, the creak of a heavy chair. No music.",
+  "shots": [
+    {
+      "id": "01",
+      "name": "establishing_wide",
+      "duration": 6,
+      "camera": "Wide locked-off shot from behind the audience, slow push-in.",
+      "action": "HOST sits in a normal armchair facing KAIJU and APE, who sit side by side in oversized armchairs a careful distance apart. Nobody speaks. KAIJU's tail shifts slightly. The audience is motionless.",
+      "dialogue": null,
+      "audio": "Room tone only. A heavy chair creaks."
+    },
+    {
+      "id": "02",
+      "name": "host_boundaries",
+      "duration": 6,
+      "camera": "Medium close-up on HOST, eye level, slight over-the-shoulder of KAIJU's scaled shoulder in soft-focus foreground.",
+      "action": "HOST leans forward, elbows on knees, glasses in hand, and speaks evenly to KAIJU.",
+      "dialogue": { "speaker": "HOST", "line": "Godzilla, Kong says you don't respect his personal boundaries.", "delivery": "calm, measured, low voice, neutral American accent, no smile" },
+      "audio": "Dialogue clean and close-miked, quiet room tone underneath."
+    },
+    {
+      "id": "03",
+      "name": "kaiju_looks_down",
+      "duration": 5,
+      "camera": "Slow push-in to a close-up of KAIJU's face.",
+      "action": "KAIJU silently lowers his gaze to the carpet. His nostrils flare once. His eyes stay down. A long, uncomfortable pause.",
+      "dialogue": null,
+      "audio": "Silence and room tone. A faint low exhale from the creature."
+    },
+    {
+      "id": "04",
+      "name": "host_look_at_me",
+      "duration": 6,
+      "camera": "Tight close-up on HOST, locked off.",
+      "action": "HOST tilts his head slightly and holds steady eye contact, unblinking.",
+      "dialogue": { "speaker": "HOST", "line": "I'm going to need you to look at me when I'm talking to you.", "delivery": "firm, patient, quiet" },
+      "audio": "Dialogue, room tone."
+    },
+    {
+      "id": "05",
+      "name": "ape_nods",
+      "duration": 4,
+      "camera": "Medium shot of APE, slight angle from HOST's side.",
+      "action": "APE glances sideways at KAIJU, then gives two slow, approving nods toward HOST, lips pressed together.",
+      "dialogue": null,
+      "audio": "Room tone, the leather of the chair creaks as APE shifts."
+    },
+    {
+      "id": "06",
+      "name": "host_skyscraper",
+      "duration": 7,
+      "camera": "Medium close-up on HOST as he turns his head from KAIJU to APE, camera holds.",
+      "action": "HOST turns to APE and gestures once, open-palmed, with the folded glasses.",
+      "dialogue": { "speaker": "HOST", "line": "And Kong, throwing a skyscraper at somebody is not healthy communication.", "delivery": "matter-of-fact, gently reproachful" },
+      "audio": "Dialogue, room tone."
+    },
+    {
+      "id": "07",
+      "name": "ape_offended",
+      "duration": 5,
+      "camera": "Close-up on APE's face, very slow push-in.",
+      "action": "APE's brow lowers, his lips purse, and he leans back slightly in the chair, visibly offended. He looks away toward the audience, then back. No roar, no chest beating.",
+      "dialogue": null,
+      "audio": "A short, indignant huff through the nose. Room tone."
+    },
+    {
+      "id": "08",
+      "name": "host_seventeen_cities",
+      "duration": 8,
+      "camera": "Two-shot past both creatures toward HOST, then hold.",
+      "action": "HOST looks from one creature to the other and delivers the line without blinking.",
+      "dialogue": { "speaker": "HOST", "line": "You two have destroyed seventeen cities. At some point, we have to stop blaming the cities.", "delivery": "slow, deliberate, a beat of silence between the two sentences" },
+      "audio": "Dialogue, room tone."
+    },
+    {
+      "id": "09",
+      "name": "silent_audience",
+      "duration": 5,
+      "camera": "Reverse wide on the studio audience from the stage, slow lateral drift.",
+      "action": "The audience sits completely silent and still. One woman slowly lowers her hand from her mouth. Nobody laughs or claps.",
+      "dialogue": null,
+      "audio": "Dead silence except room tone and a single distant cough."
+    },
+    {
+      "id": "10",
+      "name": "final_hold",
+      "duration": 6,
+      "camera": "Wide shot of all three from the side of the stage, locked off.",
+      "action": "Nobody moves. After a long beat KAIJU slowly raises his eyes to meet HOST's. APE keeps staring straight ahead. Hold.",
+      "dialogue": null,
+      "audio": "Room tone, then silence."
+    }
+  ]
+}
